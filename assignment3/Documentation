@@ -1,0 +1,81 @@
+employee
+	emp_no int,
+	emp_name varchar(30),
+	date date,
+	position varchar(20),
+	salary int
+	 
+TE
+
+	emo_no int,
+	emp_name varchar(30),
+	join_date date,
+	position varchar(20),
+	emp_salary int
+	
+	
+UNION OPERATIONS (union)
+
+	1. Create tables Employee and TE
+
+	2. insert some records in both
+
+	3. 
+		select * from Employee
+	 	select * from TE;
+
+	
+	4. Select * from Employee union Select * from TE
+		ignores comman elements
+		
+	
+	5. select * from Employee union all select * from TE
+		will display comman elements as well
+
+
+
+NESTED SUB QUERRIES
+
+	
+	6. select distinct emp_no from Employee where emp_no in (select emp_no form TE) 
+		querry reads from back to front - matching emp no will be displayed 
+
+
+
+AGGREGATE FUNCTIONS (min,max,sum,avg)
+
+	7. select max(salary) from Employee;
+	8. select min(emp_salary) from TE;
+	9. select sum(salary) from Employee;
+	10. select avg(salsry) from Employee;
+	11. select count(emp_no) form TE;
+	
+	12. select lcase(emp_name) from Employee;
+	12. select ucase(emp_name) from Employee;
+		converts to lowercase / uppercase
+		
+	13. select mid(emp_name,2,3) from Employee;
+		in emp_name starting form  --2-- to till --3--
+		
+		
+		
+INSERTING
+
+	
+	INSERT INTO employee (emp_no, emp_name, date, position, salary)
+	VALUES 
+	(1, 'vedant', '2025-02-24', 'Software Engineer', 60000),
+	(2, 'pratik', '2025-01-15', 'Data Analyst', 55000),
+	(3, 'yash', '2024-11-10', 'Product Manager', 75000),
+	(4, 'dada', '2025-02-10', 'HR Specialist', 50000),
+	(5, 'mayur', '2024-12-01', 'Graphic Designer', 45000);
+
+	-- Inserting into the TE table with the same emp_no
+	INSERT INTO TE (emo_no, emp_name, join_date, position, emp_salary)
+	VALUES 
+	(1, 'vedant', '2025-02-24', 'Software Engineer', 60000),
+	(2, 'pratik', '2025-01-15', 'Data Analyst', 55000),
+	(7, 'xxx', '2024-11-10', 'Product Manager', 75000),
+	(9, 'yyy', '2025-02-10', 'HR Specialist', 50000),
+	(5, 'mayur', '2024-12-01', 'Graphic Designer', 45000);
+
