@@ -1,0 +1,218 @@
+student@student-Veriton-M200-H61:~$ sudo mysql -u root -p 
+[sudo] password for student: 
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.41-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use as3_dhadgevedant
+Database changed
+mysql> create table Employee( emp_no int, emp_name varchar(30), date date, position varchar(20), salary int);
+Query OK, 0 rows affected (1.16 sec)
+
+mysql> create table TE(
+    -> emo_no int,
+    -> emp_name varchar(30),
+    -> join_date date,
+    -> position varchar(20),
+    -> emp_salary int);
+Query OK, 0 rows affected (1.05 sec)
+
+mysql> INSERT INTO employee (emp_no, emp_name, date, position, salary)
+    -> VALUES 
+    -> (1, 'vedant', '2025-02-24', 'Software Engineer', 60000),
+    -> (2, 'pratik', '2025-01-15', 'Data Analyst', 55000),
+    -> (3, 'yash', '2024-11-10', 'Product Manager', 75000),
+    -> (4, 'dada', '2025-02-10', 'HR Specialist', 50000),
+    -> (5, 'mayur', '2024-12-01', 'Graphic Designer', 45000);
+ERROR 1146 (42S02): Table 'as3_dhadgevedant.employee' doesn't exist
+mysql> INSERT INTO Employee (emp_no, emp_name, date, position, salary) VALUES  (1, 'vedant', '2025-02-24', 'Software Engineer', 60000), (2, 'pratik', '2025-01-15', 'Data Analyst', 55000), (3, 'yash', '2024-11-10', 'Product Manager', 75000), (4, 'dada', '2025-02-10', 'HR Specialist', 50000), (5, 'mayur', '2024-12-01', 'Graphic Designer', 45000);
+Query OK, 5 rows affected (0.16 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO TE (emo_no, emp_name, join_date, position, emp_salary)
+    -> VALUES 
+    -> (1, 'vedant', '2025-02-24', 'Software Engineer', 60000),
+    -> (2, 'pratik', '2025-01-15', 'Data Analyst', 55000),
+    -> (7, 'xxx', '2024-11-10', 'Product Manager', 75000),
+    -> (9, 'yyy', '2025-02-10', 'HR Specialist', 50000),
+    -> (5, 'mayur', '2024-12-01', 'Graphic Designer', 45000);
+Query OK, 5 rows affected (0.09 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from Employee;
++--------+----------+------------+-------------------+--------+
+| emp_no | emp_name | date       | position          | salary |
++--------+----------+------------+-------------------+--------+
+|      1 | vedant   | 2025-02-24 | Software Engineer |  60000 |
+|      2 | pratik   | 2025-01-15 | Data Analyst      |  55000 |
+|      3 | yash     | 2024-11-10 | Product Manager   |  75000 |
+|      4 | dada     | 2025-02-10 | HR Specialist     |  50000 |
+|      5 | mayur    | 2024-12-01 | Graphic Designer  |  45000 |
++--------+----------+------------+-------------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from TE;
++--------+----------+------------+-------------------+------------+
+| emo_no | emp_name | join_date  | position          | emp_salary |
++--------+----------+------------+-------------------+------------+
+|      1 | vedant   | 2025-02-24 | Software Engineer |      60000 |
+|      2 | pratik   | 2025-01-15 | Data Analyst      |      55000 |
+|      7 | xxx      | 2024-11-10 | Product Manager   |      75000 |
+|      9 | yyy      | 2025-02-10 | HR Specialist     |      50000 |
+|      5 | mayur    | 2024-12-01 | Graphic Designer  |      45000 |
++--------+----------+------------+-------------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> Select * from Employee union Select * from TE;
++--------+----------+------------+-------------------+--------+
+| emp_no | emp_name | date       | position          | salary |
++--------+----------+------------+-------------------+--------+
+|      1 | vedant   | 2025-02-24 | Software Engineer |  60000 |
+|      2 | pratik   | 2025-01-15 | Data Analyst      |  55000 |
+|      3 | yash     | 2024-11-10 | Product Manager   |  75000 |
+|      4 | dada     | 2025-02-10 | HR Specialist     |  50000 |
+|      5 | mayur    | 2024-12-01 | Graphic Designer  |  45000 |
+|      7 | xxx      | 2024-11-10 | Product Manager   |  75000 |
+|      9 | yyy      | 2025-02-10 | HR Specialist     |  50000 |
++--------+----------+------------+-------------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> select * from Employee union all select * from TE;
++--------+----------+------------+-------------------+--------+
+| emp_no | emp_name | date       | position          | salary |
++--------+----------+------------+-------------------+--------+
+|      1 | vedant   | 2025-02-24 | Software Engineer |  60000 |
+|      2 | pratik   | 2025-01-15 | Data Analyst      |  55000 |
+|      3 | yash     | 2024-11-10 | Product Manager   |  75000 |
+|      4 | dada     | 2025-02-10 | HR Specialist     |  50000 |
+|      5 | mayur    | 2024-12-01 | Graphic Designer  |  45000 |
+|      1 | vedant   | 2025-02-24 | Software Engineer |  60000 |
+|      2 | pratik   | 2025-01-15 | Data Analyst      |  55000 |
+|      7 | xxx      | 2024-11-10 | Product Manager   |  75000 |
+|      9 | yyy      | 2025-02-10 | HR Specialist     |  50000 |
+|      5 | mayur    | 2024-12-01 | Graphic Designer  |  45000 |
++--------+----------+------------+-------------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select distinct emp_no from Employee where emp_no in (select emp_no form TE) ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TE)' at line 1
+mysql> select distinct emp_no from Employee where emp_no in (select emp_no from TE) ;
++--------+
+| emp_no |
++--------+
+|      1 |
+|      2 |
+|      3 |
+|      4 |
+|      5 |
++--------+
+5 rows in set (0.01 sec)
+
+mysql> select max(salary) from Employee;
++-------------+
+| max(salary) |
++-------------+
+|       75000 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select min(emp_salary) from TE;
++-----------------+
+| min(emp_salary) |
++-----------------+
+|           45000 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(salary) from Employee;
++-------------+
+| sum(salary) |
++-------------+
+|      285000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(salsry) from Employee;
+ERROR 1054 (42S22): Unknown column 'salsry' in 'field list'
+mysql> select avg(salary) from Employee;
++-------------+
+| avg(salary) |
++-------------+
+|  57000.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(emp_no) form TE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TE' at line 1
+mysql> select count(emp_no) from TE;
+ERROR 1054 (42S22): Unknown column 'emp_no' in 'field list'
+mysql> select count(emo_no) from TE;
++---------------+
+| count(emo_no) |
++---------------+
+|             5 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> RE EXECUTING 6TH QUERRY BECAUSE OF ERROR\C
+ERROR: 
+Usage: \C charset_name | charset charset_name
+    -> \c
+\c
+^C
+mysql> select distinct emp_no from Employee where emp_no in (select emo_no form TE);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TE)' at line 1
+mysql> select distinct emp_no from Employee where emp_no in (select emo_no from TE);
++--------+
+| emp_no |
++--------+
+|      1 |
+|      2 |
+|      5 |
++--------+
+3 rows in set (0.00 sec)
+
+mysql> select lcase(emp_name) from Employee;
++-----------------+
+| lcase(emp_name) |
++-----------------+
+| vedant          |
+| pratik          |
+| yash            |
+| dada            |
+| mayur           |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select ucase(emp_name) from Employee;
++-----------------+
+| ucase(emp_name) |
++-----------------+
+| VEDANT          |
+| PRATIK          |
+| YASH            |
+| DADA            |
+| MAYUR           |
++-----------------+
+5 rows in set (0.01 sec)
+
+mysql> select mid(emp_name,2,3) from Employee;
++-------------------+
+| mid(emp_name,2,3) |
++-------------------+
+| eda               |
+| rat               |
+| ash               |
+| ada               |
+| ayu               |
++-------------------+
+5 rows in set (0.00 sec)
